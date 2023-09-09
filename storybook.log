@@ -1,0 +1,7 @@
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for @storybook/core-common@7.4.0.
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\nmaeg\AppData\Local\npm-cache\_logs\2023-08-29T09_26_29_786Z-debug-0.log
