@@ -35,57 +35,57 @@ const BREAKPOINTS: { [key: string]: string } = {
  * @returns CSSプロパティとその値 (ex. background-color: white;)
  */
 export function toPropValue<T>(
-  propKey: string,
-  prop?: Responsive<T>,
-  theme?: AppTheme,
+    propKey: string,
+    prop?: Responsive<T>,
+    theme?: AppTheme,
 ) {
-  if (prop === undefined) return undefined
+    if (prop === undefined) return undefined
 
-  if (isResponsivePropType(prop)) {
+    if (isResponsivePropType(prop)) {
     const result = []
     for (const responsiveKey in prop) {
-      if (responsiveKey === 'base') {
-        // デフォルトのスタイル
-        result.push(
-          `${propKey}: ${toThemeValueIfNeeded(
-            propKey,
-            prop[responsiveKey],
-            theme,
-          )};`,
-        )
-      } else if (
-        responsiveKey === 'sm' ||
-        responsiveKey === 'md' ||
-        responsiveKey === 'lg' ||
-        responsiveKey === 'xl'
-      ) {
+        if (responsiveKey === 'base') {
+            // デフォルトのスタイル
+            result.push(
+                `${propKey}: ${toThemeValueIfNeeded(
+                propKey,
+                prop[responsiveKey],
+                theme,
+                )};`,
+            )
+        } else if (
+            responsiveKey === 'sm' ||
+            responsiveKey === 'md' ||
+            responsiveKey === 'lg' ||
+            responsiveKey === 'xl'
+        ) {
         // メディアクエリでのスタイル
         const breakpoint = BREAKPOINTS[responsiveKey]
         const style = `${propKey}: ${toThemeValueIfNeeded(
-          propKey,
-          prop[responsiveKey],
-          theme,
-        )};`
-        result.push(`@media screen and (min-width: ${breakpoint}) {${style}}`)
-      }
+            propKey,
+            prop[responsiveKey],
+            theme,
+            )};`
+                result.push(`@media screen and (min-width: ${breakpoint}) {${style}}`)
+            }
+        }
+        return result.join('\n')
     }
-    return result.join('\n')
-  }
 
-  return `${propKey}: ${toThemeValueIfNeeded(propKey, prop, theme)};`
+    return `${propKey}: ${toThemeValueIfNeeded(propKey, prop, theme)};`
 }
 
 const SPACE_KEYS = new Set([
-  'margin',
-  'margin-top',
-  'margin-left',
-  'margin-bottom',
-  'margin-right',
-  'padding',
-  'padding-top',
-  'padding-left',
-  'padding-bottom',
-  'padding-right',
+    'margin',
+    'margin-top',
+    'margin-left',
+    'margin-bottom',
+    'margin-right',
+    'padding',
+    'padding-top',
+    'padding-left',
+    'padding-bottom',
+    'padding-right',
 ])
 const COLOR_KEYS = new Set(['color', 'background-color'])
 const FONT_SIZE_KEYS = new Set(['font-size'])

@@ -9,7 +9,7 @@ export type SigninParams = {
      * ユーザー名
      * サンプルユーザーのユーザー名は"user"
      */
-    username: string;
+    username: string
     /**
      * パスワード
      * サンプルユーザーのパスワードは"password"
@@ -32,12 +32,13 @@ const signin = async (
     // fetcher関数（6.2.1で作ったsrc/utils/index.tsの関数）を呼び出して通信を作っていく
     return await fetcher(
         // ↓fetcher関数の接続先サーバー（URL）　繋ぐ先のURLを確認　ここではサーバーのauth/signinに繋ぎにいく
-        `${context.apiRootUrl.replace(/\/$/g,")}/auth/signin`,
+        `${context.apiRootUrl.replace(/\/$/g,'')}/auth/signin`,
         {
             // 送るならPOST、引っ張ってくるならGET
             method: 'POST',
             headers: {
                 Accept: 'application/json',
+                'Content-Type': 'application/json',
             },
             // パラメーターをJSONで渡す
             body:JSON.stringify(params),
